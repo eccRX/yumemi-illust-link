@@ -1,0 +1,47 @@
+{
+  "name": "yumemi-illust-link",
+  "description": "X(Twitter) のイラスト投稿をカードで一覧する、linktree 風の一頁式ギャラリー。ビルド時プリフェッチで高速・静的配信。",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.29.3",
+  "keywords": [
+    "vue",
+    "vite",
+    "tailwindcss",
+    "twitter",
+    "x",
+    "gallery",
+    "linktree",
+    "illustration"
+  ],
+  "scripts": {
+    "prefetch": "node scripts/prefetch-tweets.mjs",
+    "dev": "node scripts/prefetch-tweets.mjs && vite",
+    "build": "node scripts/prefetch-tweets.mjs && vite build",
+    "typecheck": "vue-tsc -b",
+    "preview": "vite preview",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "reka-ui": "^2.9.10",
+    "vue": "^3.5.38"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/node": "^22.10.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/tsconfig": "^0.8.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.7.0",
+    "globals": "^17.3.0",
+    "tailwindcss": "^4.3.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.2.4"
+  }
+}

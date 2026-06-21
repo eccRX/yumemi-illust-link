@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+/* src のみスキャン（Tailwind v4 が public の JSON/画像を走査しないように） */
+@source not "../public";
+
+/* テーマ配色：わたあめ（コットンキャンディ）。淡いピンク × 水色 × 白の明るく柔らかい雰囲気。
+   コントラスト優先：背景・カードは淡く保ちつつ、文字とリンクは読みやすい濃さにする。
+   ※ ここの色トークンを差し替えるだけで全体のテーマを変更できます。 */
+@theme {
+  --color-ink: #33457e; /* 主要文字（ネイビー寄り。明色地に約 8:1） */
+  --color-ink-soft: #4a5688; /* 副次文字 */
+  --color-ink-muted: #5f688c; /* 弱い文字（handle/日付）。明色カードに約 4.7:1 */
+  --color-accent: #c0306e; /* リンク/アクセント（ローズ。白地でも読める濃さ） */
+  --color-accent-strong: #be2f6c; /* 塗りつぶし（＋白字） */
+  --color-sky: #4f86cf; /* 副アクセント（そら色＝もう一方のわたあめ色） */
+}
+
+:root {
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
+  line-height: 1.6;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* わたあめ空：パウダーブルー → 淡ラベンダー → ローズのグラデ ＋ ピンク/青のふわっとした光。スクロールで動かない */
+  background:
+    radial-gradient(1100px 560px at 12% -8%, rgba(244, 160, 196, 0.3), transparent 60%),
+    radial-gradient(950px 650px at 112% 6%, rgba(140, 175, 230, 0.3), transparent 55%),
+    linear-gradient(160deg, #cbd9f1 0%, #dccfe9 50%, #f3d2e0 100%);
+  background-attachment: fixed;
+  color: var(--color-ink-soft);
+}
+
+/* 丸みのある見出し用フォント */
+.font-display {
+  font-family: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, sans-serif;
+}
+
+@layer components {
+  /* 白くやわらかいカード（明色地なので白ベース＋淡い影） */
+  .card {
+    @apply overflow-hidden rounded-3xl border border-white/70 bg-white/70 shadow-lg shadow-pink-200/40 backdrop-blur-md transition duration-300;
+  }
+  .card:hover {
+    @apply -translate-y-1 border-white/90 bg-white/85 shadow-xl shadow-pink-300/50;
+  }
+
+  /* 上部バーのアイコンボタン（そら色の差し色） */
+  .icon-link {
+    @apply grid h-10 w-10 place-items-center rounded-full border border-black/5 bg-white/70 text-sky-500 shadow-sm backdrop-blur transition hover:scale-110 hover:border-sky-300/60 hover:bg-white hover:text-sky-600;
+  }
+
+  /* 読み込み中のスケルトン */
+  .skeleton {
+    @apply rounded bg-black/5;
+  }
+}
+
+/* 本文中のリンク（#タグ / URL / @メンション、linkify が生成） */
+.tw-link {
+  color: var(--color-accent);
+  text-underline-offset: 2px;
+}
+.tw-link:hover {
+  color: #9e2659;
+  text-decoration: underline;
+}
+
+/* フェードイン（ライトボックス用） */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.18s ease-out;
+}

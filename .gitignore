@@ -1,0 +1,17 @@
+node_modules
+node_modules/.tmp
+dist
+.vercel
+.DS_Store
+
+# ローカル専用の環境変数（秘密情報はこちらへ）。.env はコミットされる既定値。
+*.local
+.env.local
+.env.*.local
+
+# ビルド時プリフェッチの生成物（dev/build で自動再生成。古いデータをコミットしない）
+public/tweets.json
+public/avatars.json
+
+# 開発時の一時物
+.playwright-mcp

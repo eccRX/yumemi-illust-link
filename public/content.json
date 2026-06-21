@@ -1,0 +1,26 @@
+{
+  "profile": {
+    "name": "イラストまとめ",
+    "bio": "お気に入りのイラスト投稿のまとめです。",
+    "links": []
+  },
+  "items": [
+    {
+      "type": "tweet",
+      "url": "https://x.com/eccrxwry/status/2010660550951461283"
+    },
+    {
+      "type": "tweet",
+      "url": "https://x.com/eccrxwry/status/2010660550951461283",
+      "downloadUrl": "https://pbs.twimg.com/media/G-dNDyuaUAAP6T0.jpg?name=orig"
+    },
+    {
+      "type": "image",
+      "src": "https://pbs.twimg.com/media/G-dNDyuaUAAP6T0.jpg",
+      "title": "画像エントリの例",
+      "caption": "ツイート以外の任意画像も並べられます。",
+      "downloadUrl": "https://pbs.twimg.com/media/G-dNDyuaUAAP6T0.jpg?name=orig",
+      "date": "2026-01-12"
+    }
+  ]
+}
