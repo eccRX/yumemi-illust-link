@@ -7,7 +7,7 @@ X(Twitter) のイラスト投稿を **カード形式で一覧** する、linktr
 - ⚡ **ビルド時プリフェッチ** で全データを焼き込み → 訪問者側の API 往復ゼロ・完全静的配信
 - 🧱 日付の新しい順に自動整列する **順序保持の masonry**
 - 🎨 **画像のみモード**（本文を隠し、絵師クレジットだけ表示）を環境変数で切替
-- 🛠️ 編集するのは `public/content.json` ただ 1 ファイル（コメント可）
+- 🛠️ 編集するのは `public/content.json` ただ 1 ファイル（純粋な JSON）
 
 > このリポジトリは雛形です。`public/content.json` を自分の内容に書き換えれば、そのまま自分のギャラリーになります。
 
@@ -38,6 +38,29 @@ pnpm lint       # ESLint
 ```
 
 > pnpm 以外（npm / yarn）でも動きます。スクリプト名は同じです。
+
+---
+
+## 初期設定：汎用プレースホルダの差し替え
+
+この雛形のテキストと色は **汎用プレースホルダ**です。自分用にするには下表を差し替えてください
+（名前を出したくなければ、サイト名・タイトルは汎用のままでも動きます）。
+
+| 項目 | 場所 | 既定値（プレースホルダ） |
+|------|------|------------------------|
+| サイト名 | `public/content.json` → `profile.name` | `イラストまとめ` |
+| サブタイトル | `public/content.json` → `profile.bio` | `お気に入りのイラスト投稿のまとめです。` |
+| 上部リンク集 | `public/content.json` → `profile.links` | `[]`（空ならメニュー非表示） |
+| 作品一覧 | `public/content.json` → `items` | サンプル数件（下の「コンテンツの編集」で差し替え） |
+| ページタイトル | `index.html` → `<title>` ＋ `og:title` | `イラストまとめ` |
+| 説明文 | `index.html` → `description` ＋ `og:description` | `お気に入りのイラスト投稿をまとめた…` |
+| テーマカラー（ブラウザ UI） | `index.html` → `<meta name="theme-color">` | 配色トークンに合わせた 1 色 |
+| 配色（全体） | `src/style.css` → `@theme` の色トークン ＋ `body` の `background` | 下記「カスタマイズ」参照 |
+| ファビコン | `public/favicon.svg` | 差し替え |
+| プロジェクト名 | `package.json` の `name`、`api/_tweet-core.js` と `scripts/prefetch-tweets.mjs` の User-Agent | リポジトリ名（`*-illust-link`） |
+
+- **配色**：`src/style.css` の `@theme`（`--color-ink` / `--color-accent` / `--color-gold` …）と `body` の `background` を変えるだけで全体に反映されます。**文字と背景のコントラスト**（本文 4.5:1 以上、アイコン等 3:1 以上）を必ず確保してください。
+- 名前を前面に出さない運用も可：`profile.name` と `<title>` を汎用のまま据え置けば OK です。
 
 ---
 
