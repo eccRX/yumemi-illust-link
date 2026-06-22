@@ -101,7 +101,7 @@ pnpm lint       # ESLint
 | `url` | ✓ | ツイート URL（`https://x.com/<id>/status/<tweetId>`） |
 | `downloadUrl` | – | ダウンロードボタンのリンク（twimg 画像は末尾に `?name=orig` で原寸） |
 | `artist` | – | 絵師を手動指定 `{ "name": "...", "handle": "..." }`。`#ハッシュタグ` だけで名前が自動取得できない時の上書き用 |
-| `fallback` | – | 制限ツイート用の代替表示（後述）。`{ "image": "...", "text": "...", "author": "@..." }` すべて任意 |
+| `fallback` | – | 制限ツイート用の代替表示（後述）。`{ "image": "...", "text": "...", "author": "@...", "date": "..." }` すべて任意。`date` は並べ替え用 |
 
 画像カード（`type: "image"`）：
 
@@ -112,7 +112,7 @@ pnpm lint       # ESLint
 | `downloadUrl` | – | ダウンロードボタンのリンク |
 | `date` | – | 並べ替え用日付（ISO 文字列、例 `"2026-01-12"`）。未指定は最後尾 |
 
-- **並び順**：日付の新しい順に自動整列（JSON の並び順は無視）。ツイートは投稿時刻を自動取得。
+- **並び順**：日付の新しい順に自動整列（JSON の並び順は無視）。ツイートは投稿時刻を自動取得。**制限等で取得できない時は `fallback.date` で並びに含められます**。
 - **絵師の表示**：通常は自動判定（メンション名や発文者名）。取れない時のみ `artist` で上書き。
 
 ---
@@ -158,7 +158,8 @@ $env:VITE_SHOW_TWEET_TEXT='false'; pnpm dev
   "fallback": {
     "image": "https://pbs.twimg.com/media/xxxx.jpg?name=orig", // 任意。手元の原画像
     "text": "説明文（任意・既定文を上書き）",
-    "author": "@xxx" // 任意・URL から自動取得
+    "author": "@xxx", // 任意・URL から自動取得
+    "date": "2026-01-12" // 任意。制限で投稿時刻が取れない時、並べ替えに使う ISO 日付
   }
 }
 ```

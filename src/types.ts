@@ -29,6 +29,8 @@ export interface TweetItem {
     image?: string | null
     text?: string | null
     author?: string | null
+    /** 並べ替え用日付（ISO 文字列、任意）。発佈時間が取れない受限/削除ツイートを並びに含めるため */
+    date?: string
   }
   /** 絵師を手動指定（自動判定を上書き）。純 #ハッシュタグ等で名前を自動取得できない時に */
   artist?: {

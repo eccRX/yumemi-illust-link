@@ -20,7 +20,9 @@ const entries = computed<CardEntry[]>(() => {
     if (item.type === 'tweet') {
       const id = extractTweetId(item.url)
       const data = id ? getPrefetched(id) : null
-      const ts = data?.createdAt ? Date.parse(data.createdAt) : null
+      // ツイートの発佈時間を優先。取れない（受限/削除/未取得）時は手動の fallback.date で並びに含める
+      const raw = data?.createdAt ?? item.fallback?.date ?? null
+      const ts = raw ? Date.parse(raw) : NaN
       return { item, data, date: Number.isNaN(ts) ? null : ts }
     }
     const ts = item.date ? Date.parse(item.date) : null
